@@ -1,4 +1,4 @@
-module xelo
+module github.com/limpdev/xelo
 
 go 1.25.4
 

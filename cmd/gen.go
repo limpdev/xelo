@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	// "xelo/internal/generator"
+	// "github.com/limpdev/xelo/internal/generator"
 	"os"
 
 	"github.com/spf13/cobra"

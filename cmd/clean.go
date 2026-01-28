@@ -6,7 +6,8 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"xelo/internal/cleaner"
+
+	"github.com/limpdev/xelo/internal/cleaner"
 
 	"github.com/spf13/cobra"
 )
