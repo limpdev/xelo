@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tealeg/xlsx/v3"
+	"codeberg.org/tealeg/xlsx/v4"
 )
 
 // CleanConfig contains configuration for cleaning an Excel file
@@ -46,6 +46,7 @@ func CleanFile(config CleanConfig) (*CleanResult, error) {
 
 	// Save if not dry run
 	if !config.DryRun {
+		deltaFont(wb)
 		if err := wb.Save(config.OutputFile); err != nil {
 			return nil, fmt.Errorf("failed to save file: %w", err)
 		}
@@ -255,4 +256,23 @@ func contains(slice []string, item string) bool {
 		}
 	}
 	return false
+}
+
+func deltaFont(file *xlsx.File) {
+	newFont := xlsx.NewFont(9, "IBM Plex Sans")
+	// Create a new style with the font
+	style := xlsx.NewStyle()
+	style.Font = *newFont
+
+	for _, sheet := range file.Sheets {
+		err := sheet.ForEachRow(func(row *xlsx.Row) error {
+			return row.ForEachCell(func(cell *xlsx.Cell) error {
+				cell.SetStyle(style)
+				return nil
+			})
+		})
+		if err != nil {
+			return
+		}
+	}
 }

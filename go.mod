@@ -3,8 +3,8 @@ module github.com/limpdev/xelo
 go 1.25.4
 
 require (
+	codeberg.org/tealeg/xlsx/v4 v4.1.0
 	github.com/spf13/cobra v1.10.2
-	github.com/tealeg/xlsx/v3 v3.3.13
 )
 
 require (
